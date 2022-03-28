@@ -2,18 +2,25 @@ let myBookmarks = []
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
-const errorEL = document.getElementById("error-el")
+
+let bookmarksFromLocalStorage = localStorage.getItem("myBookmarks")
+if(bookmarksFromLocalStorage)showBookmarks()
 
 inputBtn.addEventListener("click", function(){  
-        const inputValue  = inputEl.value
+        let inputValue  = inputEl.value
         myBookmarks.push(inputValue)
         inputEl.value = "";
-        showBookmarks()       
+       
+        localStorage.setItem("myBookmarks", JSON.stringify(myBookmarks))
+        showBookmarks() 
+        
+      
       
 });
-
+console.log(localStorage.getItem("myBookmarks"))
 function showBookmarks(){
     let listItems = ""
+    myBookmarks = JSON.parse(localStorage.getItem("myBookmarks"))
     for(item of myBookmarks){
         listItems += `
         <li> 
