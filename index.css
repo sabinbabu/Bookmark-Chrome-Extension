@@ -24,12 +24,14 @@ button{
     padding: 10px 20px;
     font-weight: 1px solid bold;
     border: none;
+    cursor: pointer;
 }
 
 #delete-btn{
     background-color: white;
     color: #5f9341;
     border: 1px solid #5f9341;
+    cursor: pointer;
 }
 
 a{
