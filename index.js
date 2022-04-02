@@ -1,21 +1,21 @@
 let myBookmarks = []
 const inputBtn = document.getElementById("input-btn")
-const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
 const delBtn = document.getElementById("delete-btn")
 
-const bookmarksFromLocalStorage = localStorage.getItem("myBookmarks")
+const bookmarksFromLocalStorage = JSON.parse(localStorage.getItem("myBookmarks"))
 if(bookmarksFromLocalStorage){
     myBookmarks = bookmarksFromLocalStorage
     showBookmarks(myBookmarks)
 }
 
+
 inputBtn.addEventListener("click", function(){  
-        let inputValue  = inputEl.value
-        myBookmarks.push(inputValue)
-        inputEl.value = "";
+    chrome.tabs.query({active: true, currentWindow: true}, function(tabs){
+        myBookmarks.push(tabs[0].url)
         localStorage.setItem("myBookmarks", JSON.stringify(myBookmarks))
-        showBookmarks(myBookmarks)             
+        showBookmarks(myBookmarks)
+    })
 });
 
 delBtn.addEventListener("dblclick",function(){
