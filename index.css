@@ -22,8 +22,14 @@ button{
     background-color: #5f9341;
     color: white;
     padding: 10px 20px;
-    font-weight: bold;
+    font-weight: 1px solid bold;
     border: none;
+}
+
+#delete-btn{
+    background-color: white;
+    color: #5f9341;
+    border: 1px solid #5f9341;
 }
 
 a{

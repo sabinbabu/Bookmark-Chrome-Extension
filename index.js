@@ -2,9 +2,13 @@ let myBookmarks = []
 const inputBtn = document.getElementById("input-btn")
 const inputEl = document.getElementById("input-el")
 const ulEl = document.getElementById("ul-el")
+const delBtn = document.getElementById("delete-btn")
 
-let bookmarksFromLocalStorage = localStorage.getItem("myBookmarks")
-if(bookmarksFromLocalStorage)showBookmarks()
+const bookmarksFromLocalStorage = localStorage.getItem("myBookmarks")
+if(bookmarksFromLocalStorage){
+    myBookmarks = bookmarksFromLocalStorage
+    showBookmarks()
+}
 
 inputBtn.addEventListener("click", function(){  
         let inputValue  = inputEl.value
@@ -12,15 +16,19 @@ inputBtn.addEventListener("click", function(){
         inputEl.value = "";
        
         localStorage.setItem("myBookmarks", JSON.stringify(myBookmarks))
-        showBookmarks() 
-        
-      
-      
+        showBookmarks()             
 });
+
+delBtn.addEventListener("dblclick",function(){
+    localStorage.clear();
+    myBookmarks = []
+    showBookmarks();
+});
+
 console.log(localStorage.getItem("myBookmarks"))
 function showBookmarks(){
     let listItems = ""
-    myBookmarks = JSON.parse(localStorage.getItem("myBookmarks"))
+  
     for(item of myBookmarks){
         listItems += `
         <li> 
