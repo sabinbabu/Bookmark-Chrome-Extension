@@ -7,29 +7,27 @@ const delBtn = document.getElementById("delete-btn")
 const bookmarksFromLocalStorage = localStorage.getItem("myBookmarks")
 if(bookmarksFromLocalStorage){
     myBookmarks = bookmarksFromLocalStorage
-    showBookmarks()
+    showBookmarks(myBookmarks)
 }
 
 inputBtn.addEventListener("click", function(){  
         let inputValue  = inputEl.value
         myBookmarks.push(inputValue)
         inputEl.value = "";
-       
         localStorage.setItem("myBookmarks", JSON.stringify(myBookmarks))
-        showBookmarks()             
+        showBookmarks(myBookmarks)             
 });
 
 delBtn.addEventListener("dblclick",function(){
     localStorage.clear();
     myBookmarks = []
-    showBookmarks();
+    showBookmarks(myBookmarks);
 });
 
-console.log(localStorage.getItem("myBookmarks"))
-function showBookmarks(){
+
+function showBookmarks(savedBookmarks){
     let listItems = ""
-  
-    for(item of myBookmarks){
+    for(item of savedBookmarks){
         listItems += `
         <li> 
             <a target = _blank href= https://${item}> ${item} </a>
